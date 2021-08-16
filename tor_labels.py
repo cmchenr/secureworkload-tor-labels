@@ -28,6 +28,7 @@ else:
 # Start loop
 while True:
     # Get current exit node list
+    print('Getting latest Tor Exit Node IP list from torproject.org...')
     resp = requests.get('https://check.torproject.org/torbulkexitlist')
     current_tor_exit_nodes = set(resp.text.split('\n'))
     current_tor_exit_nodes.remove('')
@@ -74,5 +75,5 @@ while True:
     
     # Update to current list
     current_labeled_exit_nodes = current_tor_exit_nodes
-
+    print('Waiting {} seconds to check for exit node changes'.format(update_interval))
     sleep(update_interval)
